@@ -7,44 +7,60 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 10px; /* أقل هوامش للشاشات الصغيرة */
             padding: 0;
             background-color: #f4f4f9;
+            overflow-x: hidden; /* منع ظهور شريط التمرير الأفقي */
         }
         .container {
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: column; /* ترتيب العناصر عموديًا للشاشات الصغيرة */
+            align-items: center; /* توسيط العناصر */
         }
-        .input-section {
-            flex: 1;
-            margin-left: 20px;
-        }
-        .output-section {
-            flex: 1;
-            margin-right: 20px;
+        .input-section, .output-section {
+            width: 100%; /* عرض كامل للشاشات الصغيرة */
+            max-width: 600px; /* تحديد أقصى عرض للأجهزة الكبيرة */
+            margin: 10px auto; /* هوامش صغيرة */
         }
         textarea {
             width: 100%;
-            height: 200px;
+            height: 150px; /* ارتفاع أقل للشاشات الصغيرة */
             font-size: 16px;
             padding: 10px;
             direction: rtl;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         .char-boxes {
             display: flex;
-            flex-direction: column; /* Arrange boxes vertically */
-            margin-top: 5px;
+            flex-direction: column;
+            margin-top: 10px;
         }
         .char-box {
-            width: 70px; /* Smaller box size */
-            height: 35px; /* Smaller box size */
+            width: 100%; /* عرض كامل للشاشات الصغيرة */
+            max-width: 120px; /* تحديد أقصى عرض للأجهزة الكبيرة */
+            height: 40px;
             text-align: center;
-            line-height: 35px; /* Adjust line height for smaller box */
+            line-height: 40px;
             border: 1px solid #ccc;
-            margin: 2px 0; /* Reduce spacing between boxes */
-            font-size: 13px; /* Smaller font size */
+            margin: 5px auto; /* هوامش صغيرة */
+            font-size: 14px;
             background-color: #fff;
             position: relative;
+            border-radius: 5px;
         }
         .char-box.zero {
             color: red;
@@ -64,34 +80,28 @@
         .char-box.maei {
             background-color: #ffffcc;
         }
-        .stats {
-            margin-top: 20px;
-            font-size: 16px;
+        .stats, .element-stats {
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
         }
         .element-section {
-            margin-top: 20px;
             display: flex;
-            flex-direction: row; /* Arrange columns horizontally */
-            align-items: flex-start; /* Align columns closely */
-        }
-        .element-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            flex-direction: row; /* صف واحد للأعمدة */
+            justify-content: space-between; /* توزيع الأعمدة بالتساوي */
+            flex-wrap: wrap; /* السماح بتقسيم الأعمدة عند الحاجة */
         }
         .element-row {
             display: flex;
-            flex-direction: column; /* Arrange rows vertically */
-            margin-right: 10px; /* Small space between columns */
+            flex-direction: column;
+            margin: 5px;
+            width: 48%; /* عرض كل عمود بنسبة 48% للشاشات الصغيرة */
         }
         .element-header {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 5px;
-        }
-        .element-stats {
-            margin-top: 20px;
-            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
@@ -100,14 +110,14 @@
 <div class="container">
     <!-- Input Section -->
     <div class="input-section">
-        <h2>ادخل النص العربي:</h2>
+        <h2 style="text-align: center;">ادخل النص العربي:</h2>
         <textarea id="textInput" placeholder="اكتب النص هنا..."></textarea>
         <button onclick="analyzeText()">تحليل النص</button>
     </div>
 
     <!-- Output Section -->
     <div class="output-section">
-        <h2>تحليل الحروف:</h2>
+        <h2 style="text-align: center;">تحليل الحروف:</h2>
         <div class="element-section">
             <div class="element-row">
                 <div class="element-header">الحروف النارية</div>
