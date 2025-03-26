@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحليل النص العربي</title>
+    <title>حاسب الحروف العربي - النسخة المتجاوبة</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 10px; /* أقل هوامش للشاشات الصغيرة */
+            margin: 10px;
             padding: 0;
             background-color: #f4f4f9;
-            overflow-x: hidden; /* منع ظهور شريط التمرير الأفقي */
+            overflow-x: hidden;
         }
         .container {
             display: flex;
-            flex-direction: column; /* ترتيب العناصر عموديًا للشاشات الصغيرة */
-            align-items: center; /* توسيط العناصر */
+            flex-direction: column;
+            align-items: center;
         }
         .input-section, .output-section {
-            width: 100%; /* عرض كامل للشاشات الصغيرة */
-            max-width: 600px; /* تحديد أقصى عرض للأجهزة الكبيرة */
-            margin: 10px auto; /* هوامش صغيرة */
+            width: 100%;
+            max-width: 600px;
+            margin: 10px auto;
         }
         textarea {
             width: 100%;
-            height: 150px; /* ارتفاع أقل للشاشات الصغيرة */
+            height: 150px;
             font-size: 16px;
             padding: 10px;
             direction: rtl;
@@ -50,13 +50,13 @@
             margin-top: 10px;
         }
         .char-box {
-            width: 100%; /* عرض كامل للشاشات الصغيرة */
-            max-width: 120px; /* تحديد أقصى عرض للأجهزة الكبيرة */
+            width: 100%;
+            max-width: 120px;
             height: 40px;
             text-align: center;
             line-height: 40px;
             border: 1px solid #ccc;
-            margin: 5px auto; /* هوامش صغيرة */
+            margin: 5px auto;
             font-size: 14px;
             background-color: #fff;
             position: relative;
@@ -87,21 +87,39 @@
         }
         .element-section {
             display: flex;
-            flex-direction: row; /* صف واحد للأعمدة */
-            justify-content: space-between; /* توزيع الأعمدة بالتساوي */
-            flex-wrap: wrap; /* السماح بتقسيم الأعمدة عند الحاجة */
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
         .element-row {
             display: flex;
             flex-direction: column;
             margin: 5px;
-            width: 48%; /* عرض كل عمود بنسبة 48% للشاشات الصغيرة */
+            width: 48%;
         }
         .element-header {
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 5px;
             text-align: center;
+        }
+        /* تنسيق Footer */
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+            width: 100%;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -140,6 +158,12 @@
         <div class="element-stats" id="elementStats"></div>
     </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    جميع الحقوق محفوظة © 
+    <a href="https://github.com/alix24028" target="_blank">ali24028</a>
+</footer>
 
 <script>
     // Define the values of Arabic letters with merged groups and elements
@@ -199,7 +223,7 @@
         }
 
         // Calculate word count (only Arabic words, ignore numbers and symbols)
-        const arabicWords = text.match(/[\u0600-\u06FF]+/g) || []; // Match only Arabic words
+        const arabicWords = text.match(/[\u0600-\u06FF]+/g) || [];
         const wordCount = arabicWords.length;
 
         // Display character boxes for each element
